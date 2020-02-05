@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EncounterTracker.Objects
 {
-    class CharacterStats
+    public class CharacterStats
     {
     }
 }
