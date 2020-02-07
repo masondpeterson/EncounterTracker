@@ -8,9 +8,14 @@ namespace EncounterTracker
     {
         public App()
         {
+
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new LoginPage())
+            {
+                BarBackgroundColor = Color.Blue,
+                BarTextColor = Color.White
+            };
         }
 
         protected override void OnStart()

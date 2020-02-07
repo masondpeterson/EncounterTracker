@@ -7,9 +7,42 @@
              x:Class="EncounterTracker.LoginPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout>
+                <Label Text="Welcome To"
+                       FontSize="Large"
+                       VerticalOptions="CenterAndExpand" 
+                       HorizontalOptions="CenterAndExpand"/>
+                <Label Text="Encounter Tracker!"
+                       FontSize="Large"
+                       VerticalOptions="CenterAndExpand" 
+                       HorizontalOptions="CenterAndExpand" />
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Please Login"
+                       FontSize="Medium"
+                       VerticalOptions="CenterAndExpand"
+                       HorizontalOptions="CenterAndExpand"/>
+                <Entry x:Name="nameEntry"
+                       Placeholder="Enter Username"
+                       WidthRequest="200"
+                       VerticalOptions="CenterAndExpand" 
+                       HorizontalOptions="CenterAndExpand"/>
+                <Entry x:Name="passEntry"
+                       Placeholder="Enter Password"
+                       WidthRequest="200"
+                       VerticalOptions="CenterAndExpand" 
+                       HorizontalOptions="CenterAndExpand"/>
+                <StackLayout Orientation="Horizontal"
+                         VerticalOptions="CenterAndExpand" 
+                         HorizontalOptions="CenterAndExpand">
+                    <Button x:Name="regButton"
+                            Text="Register"
+                            Clicked="regButton_Clicked"/>
+                    <Button x:Name="logButton"
+                            Text="Login"
+                            Clicked="logButton_Clicked"/>
+                </StackLayout>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -14,7 +14,18 @@ namespace EncounterTracker
     {
         public LoginPage()
         {
+            Title = "Encounter Tracker";
             InitializeComponent();
+        }
+
+        private void regButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logButton_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }
