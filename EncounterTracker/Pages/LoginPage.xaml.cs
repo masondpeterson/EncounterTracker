@@ -19,6 +19,7 @@ namespace EncounterTracker
         private List<string> Usernames;
         private bool nameCheck;
         private bool passCheck;
+        private int userId;
 
         public LoginPage()
         {
@@ -49,7 +50,7 @@ namespace EncounterTracker
             var check = ValidateUser(nameEntry.Text, passEntry.Text);
             if (check)
             {
-                await Navigation.PushAsync(new HomePage(), true);
+                await Navigation.PushAsync(new HomePage(userId), true);
             }
             else
             {
@@ -77,6 +78,24 @@ namespace EncounterTracker
         #endregion
 
         #region Validation Methods
+
+        private bool ValidateUser(string username, string password)
+        {
+            var check = false;
+            //Get the user and validate the password matches the DB
+            var user = _conn.GetUserByName(username);
+            if (user != null)
+            {
+                var pass = secure.DecryptData(user.Password);
+                if (pass == password)
+                {
+                    check = true;
+                    userId = user.UserId;
+                }
+            }
+
+            return check;
+        }
 
         private void createUsername_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -120,27 +139,6 @@ namespace EncounterTracker
                 passValidate.IsVisible = true;
                 passCheck = true;
             }
-        }
-
-        #endregion
-
-        #region Support Methods
-
-        private bool ValidateUser(string username, string password)
-        {
-            var check = false;
-            //Get the user and validate the password matches the DB
-            var user = _conn.GetUserByName(username);
-            if (user != null)
-            {
-                var pass = secure.DecryptData(user.Password);
-                if (pass == password)
-                {
-                    check = true;
-                }
-            }
-
-            return check;
         }
 
         #endregion

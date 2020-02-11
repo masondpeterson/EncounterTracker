@@ -12,8 +12,12 @@ namespace EncounterTracker
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
-        public HomePage()
+        private int userId;
+
+        public HomePage(int id)
         {
+            userId = id;
+
             Title = "Encounter Tracker";
 
             InitializeComponent();
