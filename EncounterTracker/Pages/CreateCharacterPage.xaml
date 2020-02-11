@@ -6,10 +6,31 @@
              mc:Ignorable="d"
              x:Class="EncounterTracker.CreateCharacterPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout x:Name="mainContent">
+            <Label x:Name="heading"
+                   Text="Character Creator!"
+                   FontSize="Large"
+                   HorizontalOptions="CenterAndExpand"/>
+            <Entry x:Name="nameEntry" 
+                   Placeholder="Enter Character Name Here"
+                   HorizontalOptions="CenterAndExpand"/>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="CenterAndExpand">
+                <Label x:Name="pickerLabel"
+                       Text="Choose a Class"/>
+                <Picker x:Name="classPicker"
+                    ItemsSource="{Binding ClassNames}"
+                    SelectedIndexChanged="classPicker_SelectedIndexChanged"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="CenterAndExpand">
+                <Button x:Name="createButton"
+                        Text="Create"
+                        Clicked="createButton_Clicked"/>
+                <Button x:Name="cancelButton"
+                        Text="Cancel"
+                        Clicked="cancelButton_Clicked"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

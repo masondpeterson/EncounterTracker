@@ -39,7 +39,7 @@ namespace EncounterTracker
 
         async void CharCreateButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CreateCharacterPage());
+            await Navigation.PushAsync(new CreateCharacterPage(_userId));
         }
 
         async void newStatsButton_Clicked(object sender, EventArgs e)
