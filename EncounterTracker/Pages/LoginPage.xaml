@@ -8,30 +8,40 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout>
-                <Label Text="Welcome To"
+                <Label x:Name="title"
+                       Text="Welcome To Encounter Tracker"
                        FontSize="Large"
                        VerticalOptions="CenterAndExpand" 
                        HorizontalOptions="CenterAndExpand"/>
-                <Label Text="Encounter Tracker!"
-                       FontSize="Large"
-                       VerticalOptions="CenterAndExpand" 
-                       HorizontalOptions="CenterAndExpand" />
             </StackLayout>
             <StackLayout>
-                <Label Text="Please Login"
+                <Label x:Name="lowerTitleLabel"
+                       Text="Please Login"
                        FontSize="Medium"
                        VerticalOptions="CenterAndExpand"
                        HorizontalOptions="CenterAndExpand"/>
-                <Entry x:Name="nameEntry"
+                <StackLayout x:Name="nameFields">
+                    <Entry x:Name="nameEntry"
                        Placeholder="Enter Username"
                        WidthRequest="200"
                        VerticalOptions="CenterAndExpand" 
                        HorizontalOptions="CenterAndExpand"/>
-                <Entry x:Name="passEntry"
+                    <Label x:Name="nameValidate"
+                           IsVisible="False"
+                           VerticalOptions="Center"
+                           HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <StackLayout x:Name="passFields">
+                    <Entry x:Name="passEntry"
                        Placeholder="Enter Password"
                        WidthRequest="200"
                        VerticalOptions="CenterAndExpand" 
                        HorizontalOptions="CenterAndExpand"/>
+                    <Label x:Name="passValidate"
+                           IsVisible="False"
+                           VerticalOptions="Center"
+                           HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
                 <StackLayout Orientation="Horizontal"
                          VerticalOptions="CenterAndExpand" 
                          HorizontalOptions="CenterAndExpand">
@@ -41,6 +51,10 @@
                     <Button x:Name="logButton"
                             Text="Login"
                             Clicked="logButton_Clicked"/>
+                    <Button x:Name="createButton"
+                            Text="Create"
+                            Clicked="createButton_Clicked"
+                            IsVisible="False"/>
                 </StackLayout>
             </StackLayout>
         </StackLayout>
