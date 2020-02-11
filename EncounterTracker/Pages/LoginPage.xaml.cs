@@ -15,7 +15,7 @@ namespace EncounterTracker
     public partial class LoginPage : ContentPage
     {
         private SQLConn _conn = new SQLConn();
-        private string encryptionPassword = "SD7389DKJ";
+        private Simple3Des secure = new Simple3Des();
         private List<string> Usernames;
         private bool nameCheck;
         private bool passCheck;
@@ -26,6 +26,8 @@ namespace EncounterTracker
             InitializeComponent();
             title.Text = "    Welcome To\r\nEncounter Tracker";
         }
+
+        #region Button Methods
 
         private void regButton_Clicked(object sender, EventArgs e)
         {
@@ -60,7 +62,7 @@ namespace EncounterTracker
             if (nameCheck && passCheck)
             {
                 var user = new User();
-                var newPass = Crypto.Encrypt(passEntry.Text, encryptionPassword);
+                var newPass = secure.EncryptData(passEntry.Text);
                 user.Username = nameEntry.Text;
                 user.Password = newPass;
                 _conn.InsertUser(user);
@@ -71,6 +73,10 @@ namespace EncounterTracker
                 await DisplayAlert("Alert", "Please Enter a Valid Username and Password", "OK");
             }
         }
+
+        #endregion
+
+        #region Validation Methods
 
         private void createUsername_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -100,10 +106,10 @@ namespace EncounterTracker
 
         private void createPassword_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (passEntry.Text.Length < 3)
+            if (passEntry.Text.Length < 4)
             {
                 passValidate.TextColor = Color.Red;
-                passValidate.Text = "Password must be more than 3 Characters";
+                passValidate.Text = "Password must be more than 4 Characters";
                 passValidate.IsVisible = true;
                 passCheck = false;
             }
@@ -116,6 +122,8 @@ namespace EncounterTracker
             }
         }
 
+        #endregion
+
         #region Support Methods
 
         private bool ValidateUser(string username, string password)
@@ -125,8 +133,7 @@ namespace EncounterTracker
             var user = _conn.GetUserByName(username);
             if (user != null)
             {
-                var userpass = user.Password;
-                var pass = Crypto.Encrypt(password, encryptionPassword);
+                var pass = secure.DecryptData(user.Password);
                 if (pass == password)
                 {
                     check = true;

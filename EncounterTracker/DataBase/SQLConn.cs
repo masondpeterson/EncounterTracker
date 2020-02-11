@@ -40,7 +40,7 @@ namespace EncounterTracker.DataBase
             var user = from u in _conn.Table<User>()
                        where u.Username == username
                        select u;
-            return user.First();
+            return user.FirstOrDefault();
         }
 
         #endregion
