@@ -1,5 +1,8 @@
-﻿using System;
+﻿using EncounterTracker.DataBase;
+using EncounterTracker.DBObjects;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,18 +15,27 @@ namespace EncounterTracker
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HomePage : ContentPage
     {
-        private int userId;
+        //private variables
+        private int _userId;
+        private SQLConn _conn = new SQLConn();
+        private List<Character> Characters;
+        private int _selIndex = -1;
+        private Character _selChar;
+
+        //public variables
+        public ObservableCollection<string> CharacterNames { get; } = new ObservableCollection<string>();
 
         public HomePage(int id)
         {
-            userId = id;
+            _userId = id;
 
             Title = "Encounter Tracker";
+            SetCharLists();
 
             InitializeComponent();
         }
 
-        #region Button Action Methods
+        #region Action Methods
 
         async void CharCreateButton_Clicked(object sender, EventArgs e)
         {
@@ -38,6 +50,26 @@ namespace EncounterTracker
         async void histButton_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new StatsPage());
+        }
+
+        private void charPicker_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Picker picker = (Picker)sender;
+            _selIndex = picker.SelectedIndex;
+            _selChar = Characters[_selIndex];
+        }
+
+        #endregion
+
+        #region Support Methods
+
+        private void SetCharLists()
+        {
+            Characters = _conn.GetUserCharacters(_userId);
+            foreach (var character in Characters)
+            {
+                CharacterNames.Add(character.CharName);
+            }
         }
 
         #endregion

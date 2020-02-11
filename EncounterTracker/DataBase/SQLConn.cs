@@ -14,6 +14,7 @@ namespace EncounterTracker.DataBase
         {
             _conn = new SQLiteConnection(Constants.DatabasePath);
             _conn.CreateTable<User>();
+            _conn.CreateTable<Character>();
         }
 
         #region User Methods
@@ -41,6 +42,18 @@ namespace EncounterTracker.DataBase
                        where u.Username == username
                        select u;
             return user.FirstOrDefault();
+        }
+
+        #endregion
+
+        #region Character Methods
+
+        public List<Character> GetUserCharacters(int userId)
+        {
+            var character = from c in _conn.Table<Character>()
+                       where c.UserId == userId
+                       select c;
+            return character.ToList();
         }
 
         #endregion

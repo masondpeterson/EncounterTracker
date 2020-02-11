@@ -6,10 +6,13 @@ using System.Text;
 namespace EncounterTracker.DBObjects
 {
     [Table("Character")]
-    public class CharacterBase
+    public class Character
     {
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int CharacterId { get; set; }
+
+        [NotNull, Unique, Column("_name")]
+        public string CharName { get; set; }
 
         [NotNull, Column("_userId")]
         public int UserId { get; set; }
