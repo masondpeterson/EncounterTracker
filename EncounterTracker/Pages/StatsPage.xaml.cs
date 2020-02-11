@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace EncounterTracker
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HistoryPage : ContentPage
+    public partial class StatsPage : ContentPage
     {
-        public HistoryPage()
+        public StatsPage()
         {
             InitializeComponent();
         }

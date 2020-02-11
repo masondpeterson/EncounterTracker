@@ -7,9 +7,28 @@
              x:Class="EncounterTracker.HomePage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <StackLayout>
+                <Label Text="Choose A Character"
+                   FontSize="Large"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"/>
+                <Picker x:Name="charPicker"
+                        WidthRequest="250"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal"
+                         HorizontalOptions="CenterAndExpand">
+                <Button x:Name="charCreateButton"
+                        Text="Create Character"
+                        Clicked="CharCreateButton_Clicked"/>
+                <Button x:Name="newStatsButton"
+                        Text="Track"
+                        Clicked="newStatsButton_Clicked"/>
+                <Button x:Name="histButton"
+                        Text="View History"
+                        Clicked="histButton_Clicked"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

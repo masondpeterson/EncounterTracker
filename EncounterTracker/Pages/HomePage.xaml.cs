@@ -14,7 +14,28 @@ namespace EncounterTracker
     {
         public HomePage()
         {
+            Title = "Encounter Tracker";
+
             InitializeComponent();
         }
+
+        #region Button Action Methods
+
+        async void CharCreateButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new CreateCharacterPage());
+        }
+
+        async void newStatsButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new EnterStatsPage());
+        }
+
+        async void histButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new StatsPage());
+        }
+
+        #endregion
     }
 }
