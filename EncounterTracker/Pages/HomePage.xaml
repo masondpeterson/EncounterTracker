@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="EncounterTracker.HomePage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout x:Name="mainContent">
             <StackLayout>
                 <Label Text="Choose A Character"
                    FontSize="Large"

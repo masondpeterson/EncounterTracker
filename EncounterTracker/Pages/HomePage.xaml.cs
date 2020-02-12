@@ -30,9 +30,27 @@ namespace EncounterTracker
             _userId = id;
 
             Title = "Encounter Tracker";
-            SetCharLists();
-
             InitializeComponent();
+
+            Content = new ScrollView
+            {
+                Content = CreateContent()
+            };
+        }
+
+        public StackLayout CreateContent()
+        {
+            SetCharLists();
+            charPicker.ItemsSource = CharacterNames;
+            var stack = new StackLayout
+            {
+                Spacing = 10,
+                Children =
+                {
+                    mainContent
+                }
+            };
+            return stack;
         }
 
         #region Action Methods
