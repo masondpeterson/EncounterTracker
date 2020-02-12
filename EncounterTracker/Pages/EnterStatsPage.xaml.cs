@@ -28,5 +28,30 @@ namespace EncounterTracker
         {
 
         }
+
+        private void killCount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void assistCount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void dmgDealt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void dmgTaken_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void expEntry_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }
