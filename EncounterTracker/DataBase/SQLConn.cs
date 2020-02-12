@@ -16,6 +16,7 @@ namespace EncounterTracker.DataBase
             _conn.CreateTable<User>();
             _conn.CreateTable<Character>();
             _conn.CreateTable<CharClass>();
+            _conn.CreateTable<Encounter>();
         }
 
         #region User Methods
@@ -99,6 +100,32 @@ namespace EncounterTracker.DataBase
                     InsertCharClass(charClass);
                 }
             }
+        }
+
+        #endregion
+
+        #region Encounter Methods
+
+        public int InsertEncounter(Encounter encounter)
+        {
+            var result = _conn.Insert(encounter);
+            return result;
+        }
+
+        public List<Encounter> GetEncountersByPlayer(int userId)
+        {
+            var encounters = from e in _conn.Table<Encounter>()
+                             where e.UserId == userId
+                             select e;
+            return encounters.ToList();
+        }
+
+        public List<Encounter> GetEncountersByCharacter(int charId)
+        {
+            var encounters = from e in _conn.Table<Encounter>()
+                             where e.CharId == charId
+                             select e;
+            return encounters.ToList();
         }
 
         #endregion

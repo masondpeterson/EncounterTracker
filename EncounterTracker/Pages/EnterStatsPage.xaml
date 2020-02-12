@@ -6,33 +6,48 @@
              mc:Ignorable="d"
              x:Class="EncounterTracker.EnterStatsPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Let's Track Some Stats!"
-                   FontSize="Large"
-                   HorizontalOptions="CenterAndExpand"/>
+        <StackLayout Padding="15">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <StackLayout x:Name="killFields"
-                             HorizontalOptions="CenterAndExpand"
-                             Grid.Row="0"
-                             Grid.Column="0">
+                
+                <Label Text="Name"
+                       Grid.Row="0"
+                       Grid.Column="0"/>
+                <StackLayout Grid.Row="0"
+                             Grid.Column="1">
+                    <Entry x:Name="encounterName"
+                           HorizontalOptions="CenterAndExpand"
+                           Placeholder="Enter Encounter Name (Required)"/>
+                </StackLayout>
+
+                <Label Text="Kill Count:"
+                       Grid.Row="1"
+                       Grid.Column="0"/>
+                <StackLayout Grid.Row="1"
+                             Grid.Column="1">
                     <Entry x:Name="killCount"
-                           Placeholder="Kills"
+                           Placeholder="Kill Count"
                            Keyboard="Numeric"
                            TextChanged="killCount_TextChanged"/>
                     <Label x:Name="killValidate"/>
                 </StackLayout>
-                <StackLayout x:Name="assistFields"
-                             HorizontalOptions="CenterAndExpand"
-                             Grid.Row="0"
+
+                <Label Text="Assists:"
+                       Grid.Row="2"
+                       Grid.Column="0"/>
+                <StackLayout Grid.Row="2"
                              Grid.Column="1">
                     <Entry x:Name="assistCount"
                            Placeholder="Assists"
@@ -40,42 +55,66 @@
                            TextChanged="assistCount_TextChanged"/>
                     <Label x:Name="assistValidate"/>
                 </StackLayout>
-                <StackLayout x:Name="dealtFields"
-                             HorizontalOptions="CenterAndExpand"
-                             Grid.Row="1"
-                             Grid.Column="0">
+
+                <Label Text="Damage Dealt:"
+                       Grid.Row="3"
+                       Grid.Column="0"/>
+                <StackLayout Grid.Row="3"
+                             Grid.Column="1">
                     <Entry x:Name="dmgDealt"
-                           Placeholder="Damage Dealt"
+                           Placeholder="Dealt"
                            Keyboard="Numeric"
                            TextChanged="dmgDealt_TextChanged"/>
                     <Label x:Name="dealtValidate"/>
                 </StackLayout>
-                <StackLayout x:Name="takenFields"
-                             HorizontalOptions="CenterAndExpand"
-                             Grid.Row="1"
+
+                <Label Text="Damage Taken:"
+                       Grid.Row="4"
+                       Grid.Column="0"/>
+                <StackLayout Grid.Row="4"
                              Grid.Column="1">
                     <Entry x:Name="dmgTaken"
-                           Placeholder="Damage Taken"
+                           Placeholder="Taken"
                            Keyboard="Numeric"
                            TextChanged="dmgTaken_TextChanged"/>
                     <Label x:Name="takenValidate"/>
                 </StackLayout>
-                <StackLayout x:Name="expFields"
-                             HorizontalOptions="CenterAndExpand"
-                             Grid.Row="2"
-                             Grid.ColumnSpan="2">
-                    <Entry x:Name="expEntry"
-                           Placeholder="Total Experience Gained"
+
+                <Label Text="Healing Done:"
+                       Grid.Row="5"
+                       Grid.Column="0"/>
+                <StackLayout Grid.Row="5"
+                             Grid.Column="1">
+                    <Entry x:Name="healEntry"
+                           Placeholder="Healing"
                            Keyboard="Numeric"
-                           TextChanged="expEntry_TextChanged"/>
-                    <Label x:Name="expValidate"/>
+                           TextChanged="healEntry_TextChanged"/>
+                    <Label x:Name="healValidate"/>
+                </StackLayout>
+
+                <StackLayout x:Name="droppedFields"
+                             HorizontalOptions="CenterAndExpand"
+                             Grid.Row="6"
+                             Grid.ColumnSpan="2">
+                    <Label x:Name="dropLabel"
+                           Text="Did you drop?"
+                           HorizontalOptions="CenterAndExpand"/>
+                    <CheckBox x:Name="dropped"
+                              CheckedChanged="dropped_CheckedChanged"
+                              HorizontalOptions="CenterAndExpand"/>
                 </StackLayout>
             </Grid>
-            <Button x:Name="submitButton"
+            <StackLayout Orientation="Horizontal">
+                <Button x:Name="submitButton"
                     Text="Submit"
                     FontSize="Medium"
                     Clicked="submitButton_Clicked"
                     HorizontalOptions="CenterAndExpand"/>
+                <Button x:Name="cancelButton"
+                    Text="Cancel"
+                    Clicked="cancelButton_Clicked"
+                    HorizontalOptions="CenterAndExpand"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

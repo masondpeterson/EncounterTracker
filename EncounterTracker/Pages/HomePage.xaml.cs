@@ -53,7 +53,7 @@ namespace EncounterTracker
             return stack;
         }
 
-        #region Action Methods
+        #region Tracking Section Methods
 
         async void CharCreateButton_Clicked(object sender, EventArgs e)
         {
@@ -72,11 +72,6 @@ namespace EncounterTracker
             } 
         }
 
-        async void histButton_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new StatsPage());
-        }
-
         private void charPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
             Picker picker = (Picker)sender;
@@ -84,10 +79,7 @@ namespace EncounterTracker
             _selChar = Characters[_selIndex];
         }
 
-        #endregion
-
-        #region Support Methods
-
+        //Support Methods
         private void SetCharLists()
         {
             Characters = _conn.GetUserCharacters(_userId);
@@ -96,6 +88,12 @@ namespace EncounterTracker
                 CharacterNames.Add(character.CharName);
             }
         }
+
+        #endregion
+
+        #region Reporting Section Methods
+
+
 
         #endregion
     }

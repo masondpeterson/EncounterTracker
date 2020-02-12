@@ -7,30 +7,25 @@
              x:Class="EncounterTracker.HomePage">
     <ContentPage.Content>
         <StackLayout x:Name="mainContent">
-            <StackLayout>
-                <Label Text="Choose A Character"
+            <StackLayout x:Name="trackingSection">
+                <Label Text="Track New Stats"
                    FontSize="Large"
                    VerticalOptions="CenterAndExpand"
                    HorizontalOptions="CenterAndExpand"/>
-                <Picker x:Name="charPicker"
+                <StackLayout Orientation="Horizontal">
+                    <Picker x:Name="charPicker"
                         WidthRequest="250"
                         ItemsSource="{Binding CharacterNames}"
-                        SelectedIndexChanged="charPicker_SelectedIndexChanged"
-                        VerticalOptions="CenterAndExpand"
-                        HorizontalOptions="CenterAndExpand"/>
-            </StackLayout>
-            <StackLayout Orientation="Horizontal"
-                         HorizontalOptions="CenterAndExpand">
-                <Button x:Name="charCreateButton"
-                        Text="Create Character"
-                        Clicked="CharCreateButton_Clicked"/>
-                <Button x:Name="newStatsButton"
+                        SelectedIndexChanged="charPicker_SelectedIndexChanged"/>
+                    <Button x:Name="newStatsButton"
                         Text="Track"
                         Clicked="newStatsButton_Clicked"/>
-                <Button x:Name="histButton"
-                        Text="View History"
-                        Clicked="histButton_Clicked"/>
+                    <Button x:Name="charCreateButton"
+                        Text="Create Character"
+                        Clicked="CharCreateButton_Clicked"/>
+                </StackLayout>
             </StackLayout>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
