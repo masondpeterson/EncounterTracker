@@ -11,7 +11,7 @@ namespace EncounterTracker.DBObjects
         [PrimaryKey, AutoIncrement, Column("_id")]
         public int CharacterId { get; set; }
 
-        [NotNull, Unique, Column("_name")]
+        [NotNull, Column("_name")]
         public string CharName { get; set; }
 
         [NotNull, Column("_userId")]

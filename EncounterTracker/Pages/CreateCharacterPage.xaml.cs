@@ -21,6 +21,7 @@ namespace EncounterTracker
         private List<CharClass> _charClasses;
         private int _selInd = -1;
         private CharClass _selClass;
+        private bool _nameCheck;
 
 
         //public variables
@@ -66,13 +67,13 @@ namespace EncounterTracker
 
         async void createButton_Clicked(object sender, EventArgs e)
         {
-            if (CheckNameNotNull())
-            {
-                await DisplayAlert("Alert", "Please Enter a Character Name", "OK");
-            }
-            else if (CheckClassNotNull())
+            if (CheckClassNotNull())
             {
                 await DisplayAlert("Alert", "Please Select a Character Class", "OK");
+            }
+            else if (_nameCheck == false)
+            {
+                await DisplayAlert("Alert", "Must enter a unique Character Name", "OK");
             }
             else
             {
@@ -106,15 +107,30 @@ namespace EncounterTracker
             }
         }
 
-        private bool CheckNameNotNull()
+        private void nameEntry_TextChanged(object sender, TextChangedEventArgs e)
         {
-            if (nameEntry.Text == null || nameEntry.Text == "")
+            var check = false;
+            var characters = _conn.GetUserCharacters(_userId);
+            foreach (var c in characters)
             {
-                return true;
+                if (c.CharName == nameEntry.Text)
+                {
+                    check = true;
+                }
+            }
+            if (check)
+            {
+                nameValidate.TextColor = Color.Red;
+                nameValidate.Text = "Character Name Unavailable";
+                nameValidate.IsVisible = true;
+                _nameCheck = false;
             }
             else
             {
-                return false;
+                nameValidate.TextColor = Color.Green;
+                nameValidate.Text = "Character Name Available";
+                nameValidate.IsVisible = true;
+                _nameCheck = true;
             }
         }
 

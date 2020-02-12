@@ -63,6 +63,14 @@ namespace EncounterTracker.DataBase
             return character.ToList();
         }
 
+        public Character GetCharacterByName(string name)
+        {
+            var character = from c in _conn.Table<Character>()
+                            where c.CharName == name
+                            select c;
+            return character.FirstOrDefault();
+        }
+
         #endregion
 
         #region CharClass Methods

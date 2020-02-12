@@ -13,6 +13,9 @@
                    HorizontalOptions="CenterAndExpand"/>
             <Entry x:Name="nameEntry" 
                    Placeholder="Enter Character Name Here"
+                   HorizontalOptions="CenterAndExpand"
+                   TextChanged="nameEntry_TextChanged"/>
+            <Label x:Name="nameValidate"
                    HorizontalOptions="CenterAndExpand"/>
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="CenterAndExpand">
