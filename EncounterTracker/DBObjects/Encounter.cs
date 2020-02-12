@@ -20,13 +20,13 @@ namespace EncounterTracker.DBObjects
         [Column("_assist")]
         public int Assist { get; set; }
 
-        [Column("_exp")]
-        public int Experience { get; set; }
-
         [Column("_dmg")]
         public int Damage { get; set; }
 
         [Column("_taken")]
         public int DamageTaken { get; set; }
+
+        [Column("_exp")]
+        public int Experience { get; set; }
     }
 }

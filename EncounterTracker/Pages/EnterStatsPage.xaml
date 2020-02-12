@@ -7,9 +7,70 @@
              x:Class="EncounterTracker.EnterStatsPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="Let's Track Some Stats!"
+                   FontSize="Large"
+                   HorizontalOptions="CenterAndExpand"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackLayout x:Name="killFields"
+                             HorizontalOptions="CenterAndExpand"
+                             Grid.Row="0"
+                             Grid.Column="0">
+                    <Entry x:Name="killCount"
+                           Placeholder="Kills"
+                           Keyboard="Numeric"/>
+                    <Label x:Name="killValidate"/>
+                </StackLayout>
+                <StackLayout x:Name="assistFields"
+                             HorizontalOptions="CenterAndExpand"
+                             Grid.Row="0"
+                             Grid.Column="1">
+                    <Entry x:Name="assistCount"
+                           Placeholder="Assists"
+                           Keyboard="Numeric"/>
+                    <Label x:Name="assistValidate"/>
+                </StackLayout>
+                <StackLayout x:Name="dealtFields"
+                             HorizontalOptions="CenterAndExpand"
+                             Grid.Row="1"
+                             Grid.Column="0">
+                    <Entry x:Name="dmgDealt"
+                           Placeholder="Damage Dealt"
+                           Keyboard="Numeric"/>
+                    <Label x:Name="dealtValidate"/>
+                </StackLayout>
+                <StackLayout x:Name="takenFields"
+                             HorizontalOptions="CenterAndExpand"
+                             Grid.Row="1"
+                             Grid.Column="1">
+                    <Entry x:Name="dmgTaken"
+                           Placeholder="Damage Taken"
+                           Keyboard="Numeric"/>
+                    <Label x:Name="takenValidate"/>
+                </StackLayout>
+                <StackLayout x:Name="expFields"
+                             HorizontalOptions="CenterAndExpand"
+                             Grid.Row="2"
+                             Grid.ColumnSpan="2">
+                    <Entry x:Name="expEntry"
+                           Placeholder="Total Experience Gained"
+                           Keyboard="Numeric"/>
+                    <Label x:Name="expValidate"/>
+                </StackLayout>
+            </Grid>
+            <Button x:Name="submitButton"
+                    Text="Submit"
+                    FontSize="Medium"
+                    Clicked="submitButton_Clicked"
+                    HorizontalOptions="CenterAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

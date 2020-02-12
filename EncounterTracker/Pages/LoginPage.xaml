@@ -22,10 +22,11 @@
                        HorizontalOptions="CenterAndExpand"/>
                 <StackLayout x:Name="nameFields">
                     <Entry x:Name="nameEntry"
-                       Placeholder="Enter Username"
-                       WidthRequest="200"
-                       VerticalOptions="CenterAndExpand" 
-                       HorizontalOptions="CenterAndExpand"/>
+                           Placeholder="Enter Username"
+                           WidthRequest="200"
+                           VerticalOptions="CenterAndExpand" 
+                           HorizontalOptions="CenterAndExpand"
+                           ClearButtonVisibility="WhileEditing"/>
                     <Label x:Name="nameValidate"
                            IsVisible="False"
                            VerticalOptions="Center"
@@ -33,10 +34,12 @@
                 </StackLayout>
                 <StackLayout x:Name="passFields">
                     <Entry x:Name="passEntry"
-                       Placeholder="Enter Password"
-                       WidthRequest="200"
-                       VerticalOptions="CenterAndExpand" 
-                       HorizontalOptions="CenterAndExpand"/>
+                           Placeholder="Enter Password"
+                           WidthRequest="200"
+                           VerticalOptions="CenterAndExpand" 
+                           HorizontalOptions="CenterAndExpand"
+                           IsPassword="True"
+                           ClearButtonVisibility="WhileEditing"/>
                     <Label x:Name="passValidate"
                            IsVisible="False"
                            VerticalOptions="Center"

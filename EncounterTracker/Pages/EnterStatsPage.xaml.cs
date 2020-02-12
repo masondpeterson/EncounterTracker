@@ -12,9 +12,21 @@ namespace EncounterTracker
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EnterStatsPage : ContentPage
     {
-        public EnterStatsPage()
+        private int _userId;
+        private int _charId;
+
+        public EnterStatsPage(int userId, int charId)
         {
+            _userId = userId;
+            _charId = charId;
+
+            Title = "Encounter Tracker";
             InitializeComponent();
+        }
+
+        private void submitButton_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

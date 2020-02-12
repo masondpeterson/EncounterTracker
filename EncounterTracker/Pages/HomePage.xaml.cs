@@ -62,7 +62,14 @@ namespace EncounterTracker
 
         async void newStatsButton_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new EnterStatsPage());
+            if(_selIndex == -1)
+            {
+                await DisplayAlert("Alert", "Please select a character", "OK");
+            }
+            else
+            {
+                await Navigation.PushAsync(new EnterStatsPage(_userId, _selChar.CharacterId));
+            } 
         }
 
         async void histButton_Clicked(object sender, EventArgs e)
