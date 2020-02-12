@@ -96,5 +96,15 @@ namespace EncounterTracker
 
 
         #endregion
+
+        private void searchButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
+
+        private void refreshButton_Clicked(object sender, EventArgs e)
+        {
+
+        }
     }
 }
