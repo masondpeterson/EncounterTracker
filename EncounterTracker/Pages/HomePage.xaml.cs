@@ -116,7 +116,7 @@ namespace EncounterTracker.Pages
 
         private StackLayout CreateStatsLayout(Stats stat)
         {
-            statsTitle.Text = "Stats Report (" + _conn.GetEncountersByPlayer(_userId).Count + " Encounters)";
+            statsTitle.Text = "Player Stats (" + _conn.GetEncountersByPlayer(_userId).Count + " Encounters)";
             var sList = GetStatStrings(stat);
             var title = CreateTitleLabel(stat);
             var stack = new StackLayout

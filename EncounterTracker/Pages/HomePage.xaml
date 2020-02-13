@@ -7,71 +7,70 @@
              x:Class="EncounterTracker.Pages.HomePage">
     <ContentPage.Content>
         <StackLayout x:Name="mainContent"
-                     Padding="15"
-                     Spacing="15">
-            <StackLayout x:Name="trackingSection"
-                         HorizontalOptions="CenterAndExpand">
-                <Label Text="Track New Stats"
-                   FontSize="Medium"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand"/>
-                <StackLayout Orientation="Horizontal">
-                    <Picker x:Name="charPicker"
-                        ItemsSource="{Binding CharacterNames}"
-                        SelectedIndexChanged="charPicker_SelectedIndexChanged"/>
-                    <Button x:Name="newStatsButton"
-                        Text="Track"
-                        Clicked="newStatsButton_Clicked"/>
-                    <Button x:Name="charCreateButton"
-                        Text="Create Character"
-                        Clicked="CharCreateButton_Clicked"/>
-                </StackLayout>
-                <StackLayout x:Name="searchSection">
-                    <StackLayout Orientation="Horizontal"
+                     Padding="10"
+                     Spacing="10">
+            <StackLayout x:Name="staticSection">
+                <StackLayout x:Name="searchSection"
+                             Orientation="Horizontal"
                              HorizontalOptions="CenterAndExpand">
-                        <SearchBar x:Name="searchInput"
-                               Placeholder="Search Encounters"/>
-                        <Button x:Name="searchButton"
+                    <SearchBar x:Name="searchInput"
+                               Placeholder="Search Encounters"
+                               WidthRequest="280"/>
+                    <Button x:Name="searchButton"
                             Text="Search"
                             Clicked="searchButton_Clicked"/>
-                    </StackLayout>
-                    <StackLayout x:Name="reportSection">
-                        <Label x:Name="statsTitle"
-                           Text="Stats Report"
-                           FontSize="Medium"
-                           HorizontalOptions="CenterAndExpand"/>
-                    </StackLayout>
                 </StackLayout>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <StackLayout x:Name="killStats"
-                             Grid.Row="0"
-                             Grid.Column="0"/>
-                    <StackLayout x:Name="assistStats"
-                             Grid.Row="0"
-                             Grid.Column="1"/>
-                    <StackLayout x:Name="dealtStats"
-                             Grid.Row="1"
-                             Grid.Column="0"/>
-                    <StackLayout x:Name="takenStats"
-                             Grid.Row="1"
-                             Grid.Column="1"/>
-                    <StackLayout x:Name="healStats"
-                             Grid.Row="2"
-                             Grid.Column="0"/>
-                    <StackLayout x:Name="dropStats"
-                             Grid.Row="2"
-                             Grid.Column="1"/>
-                </Grid>
+                <Button x:Name="charCreateButton"
+                        Text="Create New Character"
+                        HorizontalOptions="CenterAndExpand"
+                        Clicked="CharCreateButton_Clicked"/>
+                <StackLayout x:Name="reportSection">
+                    <Label x:Name="statsTitle"
+                           Text="Player Stats"
+                           FontSize="Large"
+                           HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                             HorizontalOptions="CenterAndExpand">
+                    <Picker x:Name="charPicker"
+                            WidthRequest="200"
+                            ItemsSource="{Binding CharacterNames}"
+                            SelectedIndexChanged="charPicker_SelectedIndexChanged"/>
+                    <Button x:Name="newStatsButton"
+                            Text="Track"
+                            Clicked="newStatsButton_Clicked"/>
+                </StackLayout>
             </StackLayout>
+            <Grid x:Name="dynamicSection"
+                  Padding="25">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackLayout x:Name="killStats"
+                             Grid.Row="0"
+                             Grid.Column="0"/>
+                <StackLayout x:Name="assistStats"
+                             Grid.Row="0"
+                             Grid.Column="1"/>
+                <StackLayout x:Name="dealtStats"
+                             Grid.Row="1"
+                             Grid.Column="0"/>
+                <StackLayout x:Name="takenStats"
+                             Grid.Row="1"
+                             Grid.Column="1"/>
+                <StackLayout x:Name="healStats"
+                             Grid.Row="2"
+                             Grid.Column="0"/>
+                <StackLayout x:Name="dropStats"
+                             Grid.Row="2"
+                             Grid.Column="1"/>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
