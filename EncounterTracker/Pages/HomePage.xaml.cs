@@ -26,10 +26,9 @@ namespace EncounterTracker.Pages
         public ObservableCollection<string> CharacterNames { get; } = new ObservableCollection<string>();
         public enum Stats { Kill, Assist, Dealt, Taken, Heal, Drop }
 
-        public HomePage(int id)
+        public HomePage(int userId)
         {
-            _userId = id;
-
+            _userId = userId;
             Title = "Encounter Tracker";
             InitializeComponent();
 
@@ -65,14 +64,14 @@ namespace EncounterTracker.Pages
 
         async void newStatsButton_Clicked(object sender, EventArgs e)
         {
-            if(_selIndex == -1)
+            if (_selIndex == -1)
             {
                 await DisplayAlert("Alert", "Please select a character", "OK");
             }
             else
             {
                 await Navigation.PushAsync(new EnterStatsPage(_userId, _selChar.CharacterId));
-            } 
+            }
         }
 
         private void charPicker_SelectedIndexChanged(object sender, EventArgs e)

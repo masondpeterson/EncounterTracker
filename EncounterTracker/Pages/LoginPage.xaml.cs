@@ -1,6 +1,5 @@
 ﻿using EncounterTracker.DataBase;
 using EncounterTracker.DBObjects;
-using EncounterTracker.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,11 +15,11 @@ namespace EncounterTracker.Pages
     public partial class LoginPage : ContentPage
     {
         private SQLConn _conn = new SQLConn();
-        private Simple3Des secure = new Simple3Des();
-        private List<string> Usernames;
-        private bool nameCheck;
-        private bool passCheck;
-        private int userId;
+        private Simple3Des _secure = new Simple3Des();
+        private List<string> _usernames;
+        private bool _nameCheck;
+        private bool _passCheck;
+        private int _userId;
 
         public LoginPage()
         {
@@ -43,7 +42,7 @@ namespace EncounterTracker.Pages
             createButton.IsVisible = true;
             nameEntry.TextChanged += createUsername_TextChanged;
             passEntry.TextChanged += createPassword_TextChanged;
-            Usernames = _conn.GetUserNames();
+            _usernames = _conn.GetUserNames();
         }
 
         async void logButton_Clicked(object sender, EventArgs e)
@@ -51,7 +50,7 @@ namespace EncounterTracker.Pages
             var check = ValidateUser(nameEntry.Text, passEntry.Text);
             if (check)
             {
-                await Navigation.PushAsync(new HomePage(userId));
+                await Navigation.PushAsync(new HomePage(_userId));
             }
             else
             {
@@ -61,10 +60,10 @@ namespace EncounterTracker.Pages
 
         async void createButton_Clicked(object sender, EventArgs e)
         {
-            if (nameCheck && passCheck)
+            if (_nameCheck && _passCheck)
             {
                 var user = new User();
-                var newPass = secure.EncryptData(passEntry.Text);
+                var newPass = _secure.EncryptData(passEntry.Text);
                 user.Username = nameEntry.Text;
                 user.Password = newPass;
                 _conn.InsertUser(user);
@@ -87,11 +86,11 @@ namespace EncounterTracker.Pages
             var user = _conn.GetUserByName(username);
             if (user != null)
             {
-                var pass = secure.DecryptData(user.Password);
+                var pass = _secure.DecryptData(user.Password);
                 if (pass == password)
                 {
                     check = true;
-                    userId = user.UserId;
+                    _userId = user.UserId;
                 }
             }
 
@@ -101,7 +100,7 @@ namespace EncounterTracker.Pages
         private void createUsername_TextChanged(object sender, TextChangedEventArgs e)
         {
             var check = false;
-            foreach (var name in Usernames)
+            foreach (var name in _usernames)
             {
                 if (name == nameEntry.Text)
                 {
@@ -113,14 +112,14 @@ namespace EncounterTracker.Pages
                 nameValidate.TextColor = Color.Red;
                 nameValidate.Text = "Username Unavailable";
                 nameValidate.IsVisible = true;
-                nameCheck = false;
+                _nameCheck = false;
             }
             else
             {
                 nameValidate.TextColor = Color.Green;
                 nameValidate.Text = "Username Available";
                 nameValidate.IsVisible = true;
-                nameCheck = true;
+                _nameCheck = true;
             }
         }
 
@@ -131,19 +130,17 @@ namespace EncounterTracker.Pages
                 passValidate.TextColor = Color.Red;
                 passValidate.Text = "Password must be more than 4 Characters";
                 passValidate.IsVisible = true;
-                passCheck = false;
+                _passCheck = false;
             }
             else
             {
                 passValidate.TextColor = Color.Green;
                 passValidate.Text = "Valid Password";
                 passValidate.IsVisible = true;
-                passCheck = true;
+                _passCheck = true;
             }
         }
 
         #endregion
-
-        
     }
 }
