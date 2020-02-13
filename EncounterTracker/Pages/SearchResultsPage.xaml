@@ -16,14 +16,13 @@
                         Text="Search"
                         Clicked="searchButton_Clicked"/>
             </StackLayout>
-            <StackLayout Spacing="40"
+            <StackLayout Padding ="0" 
+                         Spacing="70"
                          Orientation="Horizontal">
-                <Label Text="Name"
-                       FontSize="Small"/>
-                <Label Text="Character"
-                       FontSize="Small"/>
+                <Label Text="Name/Character"
+                       FontSize="Medium"/>
                 <Label Text="Stats"
-                       FontSize="Small"/>
+                       FontSize="Medium"/>
             </StackLayout>
             <ScrollView>
                 <StackLayout x:Name="resultsSection"/>

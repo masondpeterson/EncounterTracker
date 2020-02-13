@@ -91,19 +91,25 @@ namespace EncounterTracker.Pages
                             Orientation = StackOrientation.Horizontal,
                             Children =
                         {
-                            new Label
+                            new StackLayout
                             {
-                                Text = e.EncounterName,
-                                HorizontalOptions = LayoutOptions.CenterAndExpand
+                                HorizontalOptions = LayoutOptions.StartAndExpand,
+                                Children =
+                                {
+                                    new Label
+                                    {
+                                        Text = e.EncounterName,
 
-                            },
-                            new Label
-                            {
-                                Text = _conn.GetCharacterById(e.CharId).CharName,
-                                HorizontalOptions = LayoutOptions.CenterAndExpand
+                                    },
+                                    new Label
+                                    {
+                                        Text = _conn.GetCharacterById(e.CharId).CharName,
+                                    }
+                                }
                             },
                             new StackLayout
                             {
+                                HorizontalOptions = LayoutOptions.EndAndExpand,
                                 Children =
                                 {
                                     new Label
@@ -122,6 +128,7 @@ namespace EncounterTracker.Pages
                             },
                             new StackLayout
                             {
+                                HorizontalOptions = LayoutOptions.EndAndExpand,
                                 Children =
                                 {
                                     new Label
