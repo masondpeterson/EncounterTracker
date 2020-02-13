@@ -19,16 +19,20 @@ namespace EncounterTracker.Pages
         private int _userId;
         private SQLConn _conn = new SQLConn();
         private List<Character> Characters;
-        private int _selIndex = -1;
+        private int _selIndex;
         private Character _selChar;
+        private bool _first = false;
 
         //public variables
         public ObservableCollection<string> CharacterNames { get; } = new ObservableCollection<string>();
         public enum Stats { Kill, Assist, Dealt, Taken, Heal, Drop }
 
-        public HomePage(int userId)
+        public HomePage(int userId, int index = -1, Character selChar = null, bool first = true)
         {
             _userId = userId;
+            _selIndex = index;
+            _selChar = selChar;
+            _first = first;
             Title = "Encounter Tracker";
             InitializeComponent();
 
@@ -38,6 +42,7 @@ namespace EncounterTracker.Pages
             };
 
             GenerateStatsLayouts();
+            charPicker.SelectedIndex = _selIndex;
         }
 
         public StackLayout CreateContent()
@@ -74,11 +79,19 @@ namespace EncounterTracker.Pages
             }
         }
 
-        private void charPicker_SelectedIndexChanged(object sender, EventArgs e)
+        async void charPicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Picker picker = (Picker)sender;
-            _selIndex = picker.SelectedIndex;
-            _selChar = Characters[_selIndex];
+            if (_first)
+            {
+                Picker picker = (Picker)sender;
+                _selIndex = picker.SelectedIndex;
+                _selChar = Characters[_selIndex];
+                await Navigation.PushAsync(new HomePage(_userId, _selIndex, _selChar, false));
+            }
+            else
+            {
+                _first = true;
+            }
         }
 
         //Support Methods
@@ -112,11 +125,25 @@ namespace EncounterTracker.Pages
             takenStats.Children.Add(CreateStatsLayout(Stats.Taken));
             healStats.Children.Add(CreateStatsLayout(Stats.Heal));
             dropStats.Children.Add(CreateStatsLayout(Stats.Drop));
+            var button = new Button
+            {
+                Text = "Player Stats",
+                HorizontalOptions = LayoutOptions.StartAndExpand
+            };
+            button.Clicked += resetButton_Clicked;
+            resetButton.Children.Add(button);
         }
 
         private StackLayout CreateStatsLayout(Stats stat)
         {
-            statsTitle.Text = "Player Stats (" + _conn.GetEncountersByPlayer(_userId).Count + " Encounters)";
+            if (_selIndex != -1)
+            {
+                statsTitle.Text = _selChar.CharName + "'s Stats (" + _conn.GetEncountersByCharacter(_selChar.CharacterId).Count + " Encounters)";
+            }
+            else
+            {
+                statsTitle.Text = "Player Stats (" + _conn.GetEncountersByPlayer(_userId).Count + " Encounters)";
+            }
             var sList = GetStatStrings(stat);
             var title = CreateTitleLabel(stat);
             var stack = new StackLayout
@@ -136,6 +163,10 @@ namespace EncounterTracker.Pages
                     new Label
                     {
                         Text = sList[2]
+                    },
+                    new Label
+                    {
+                        Text = sList[3]
                     }
                 }
             };
@@ -189,9 +220,8 @@ namespace EncounterTracker.Pages
         {
             //Create containers
             var phrases = new List<string>();
-            var statList = new List<int>();
             //Get the stats
-            statList = GetStatsList(stat);
+            var statList = GetStatsList(stat);
             //Find the Max, Avg, and Min
             var maxPhrase = "Max: " + statList.Max();
             var avgPhrase = "Avg: " + Math.Round(statList.Average());
@@ -208,7 +238,15 @@ namespace EncounterTracker.Pages
 
         private List<int> GetStatsList(Stats stat)
         {
-            var elist = _conn.GetEncountersByPlayer(_userId);
+            List<Encounter> elist;
+            if (_selIndex != -1)
+            {
+                elist = _conn.GetEncountersByCharacter(_selChar.CharacterId);
+            }
+            else
+            {
+                elist = _conn.GetEncountersByPlayer(_userId);
+            }
             var statList = new List<int>();
             foreach (var e in elist)
             {
@@ -238,6 +276,11 @@ namespace EncounterTracker.Pages
                 }
             }
             return statList;
+        }
+
+        async void resetButton_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new HomePage(_userId));
         }
 
         #endregion
