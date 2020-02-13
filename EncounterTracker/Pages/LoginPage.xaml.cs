@@ -1,5 +1,6 @@
 ﻿using EncounterTracker.DataBase;
 using EncounterTracker.DBObjects;
+using EncounterTracker.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace EncounterTracker
+namespace EncounterTracker.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
@@ -50,7 +51,7 @@ namespace EncounterTracker
             var check = ValidateUser(nameEntry.Text, passEntry.Text);
             if (check)
             {
-                await Navigation.PushAsync(new HomePage(userId), true);
+                await Navigation.PushAsync(new HomePage(userId));
             }
             else
             {

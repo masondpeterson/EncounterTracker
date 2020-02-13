@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="EncounterTracker.CreateCharacterPage">
+             x:Class="EncounterTracker.Pages.CreateCharacterPage">
     <ContentPage.Content>
         <StackLayout x:Name="mainContent">
             <Label x:Name="heading"
