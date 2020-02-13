@@ -42,12 +42,7 @@
                            Text="Overall Stats"
                            FontSize="Medium"
                            HorizontalOptions="CenterAndExpand"/>
-                    <Button x:Name="refreshButton"
-                            Text="Overall Stats"
-                            HorizontalOptions="CenterAndExpand"
-                            Clicked="refreshButton_Clicked"/>
                 </StackLayout>
-                <StackLayout x:Name="resultsSection"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -19,7 +19,6 @@ namespace EncounterTracker
         private int _userId;
         private SQLConn _conn = new SQLConn();
         private List<Character> Characters;
-        private List<Encounter> _eList;
         private int _selIndex = -1;
         private Character _selChar;
 
@@ -92,83 +91,19 @@ namespace EncounterTracker
 
         #endregion
 
-        #region Reporting Section Methods
+        #region Search Section Methods
 
-        async void searchButton_Clicked(object sender, EventArgs args)
+        async void searchButton_Clicked(object sender, EventArgs e)
         {
-            //pupulate the eList with ALL the players known encounters
-            _eList = _conn.GetEncountersByPlayer(_userId);
-            //Search the list for names that contain the search term
-            var elist = SearchEncounters(searchInput.Text);
-            if (elist.Count == 0)
-            {
-                await DisplayAlert("Alert", "No Matching Encounters were found \r\nso an unfiltered list was returned", "OK");
-                BuildResultFrames(_eList);
-            }
-            else
-            {
-                BuildResultFrames(elist);
-            }
+            await Navigation.PushAsync(new SearchResultsPage(searchInput.Text, _userId));
         }
 
-        private void refreshButton_Clicked(object sender, EventArgs e)
-        {
-            BuildResultFrames(_eList);
-        }
-
-        private List<Encounter> SearchEncounters(string searchTerm)
-        {
-            var elist = new List<Encounter>();
-            foreach (var e in _eList)
-            {
-                //check if whole search term is contained in the encounter name or if they start with the same letter. 
-                if (e.EncounterName.Contains(searchTerm))
-                {
-                    elist.Add(e);
-                }
-            }
-
-            return elist;
-        }
-
-        private void BuildResultFrames(List<Encounter> encounters)
-        {
-            foreach(var e in encounters)
-            {
-                var frame = new Frame
-                {
-                    BorderColor = Color.Gray,
-                    HasShadow = true,
-                    Content = new StackLayout
-                    {
-                        Orientation = StackOrientation.Horizontal,
-                        Children =
-                        {
-                            new Label
-                            {
-                                Text = e.EncounterName,
-                                HorizontalOptions = LayoutOptions.CenterAndExpand
-                                
-                            },
-                            new Label
-                            {
-                                Text = _conn.GetCharacterById(e.CharId).CharName,
-                                HorizontalOptions = LayoutOptions.CenterAndExpand
-                            },
-                            new Button
-                            {
-                                Text = "Stats",
-                                TabIndex = e.EncounterId,
-                                HorizontalOptions = LayoutOptions.CenterAndExpand
-                            }
-                        }
-                    }
-                };
-                resultsSection.Children.Add(frame);
-            }
-        }
         #endregion
 
+        #region Reports Section Methods
 
+
+
+        #endregion
     }
 }
