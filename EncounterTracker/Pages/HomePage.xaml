@@ -28,7 +28,7 @@
                         Clicked="CharCreateButton_Clicked"/>
                 </StackLayout>
             </StackLayout>
-            <StackLayout x:Name="resultsSection">
+            <StackLayout x:Name="searchSection">
                 <StackLayout Orientation="Horizontal"
                              HorizontalOptions="CenterAndExpand">
                     <SearchBar x:Name="searchInput"
@@ -47,6 +47,7 @@
                             HorizontalOptions="CenterAndExpand"
                             Clicked="refreshButton_Clicked"/>
                 </StackLayout>
+                <StackLayout x:Name="resultsSection"/>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

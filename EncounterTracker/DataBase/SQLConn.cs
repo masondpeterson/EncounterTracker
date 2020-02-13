@@ -72,6 +72,14 @@ namespace EncounterTracker.DataBase
             return character.FirstOrDefault();
         }
 
+        public Character GetCharacterById(int id)
+        {
+            var character = from c in _conn.Table<Character>()
+                            where c.CharacterId == id
+                            select c;
+            return character.FirstOrDefault();
+        }
+
         #endregion
 
         #region CharClass Methods
