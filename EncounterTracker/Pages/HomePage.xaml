@@ -37,13 +37,42 @@
                             Text="Search"
                             Clicked="searchButton_Clicked"/>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal">
+                <StackLayout x:Name="reportSection">
                     <Label x:Name="statsTitle"
-                           Text="Overall Stats"
+                           Text="Stats Report"
                            FontSize="Medium"
                            HorizontalOptions="CenterAndExpand"/>
                 </StackLayout>
             </StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackLayout x:Name="killStats"
+                             Grid.Row="0"
+                             Grid.Column="0"/>
+                <StackLayout x:Name="assistStats"
+                             Grid.Row="0"
+                             Grid.Column="1"/>
+                <StackLayout x:Name="dealtStats"
+                             Grid.Row="1"
+                             Grid.Column="0"/>
+                <StackLayout x:Name="takenStats"
+                             Grid.Row="1"
+                             Grid.Column="1"/>
+                <StackLayout x:Name="healStats"
+                             Grid.Row="2"
+                             Grid.Column="0"/>
+                <StackLayout x:Name="dropStats"
+                             Grid.Row="2"
+                             Grid.Column="1"/>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
