@@ -19,11 +19,10 @@
                    HorizontalOptions="CenterAndExpand"/>
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="CenterAndExpand">
-                <Label x:Name="pickerLabel"
-                       Text="Choose a Class"/>
                 <Picker x:Name="classPicker"
-                    ItemsSource="{Binding ClassNames}"
-                    SelectedIndexChanged="classPicker_SelectedIndexChanged"/>
+                        Title="Choose a Class"
+                        ItemsSource="{Binding ClassNames}"
+                        SelectedIndexChanged="classPicker_SelectedIndexChanged"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal"
                          HorizontalOptions="CenterAndExpand">

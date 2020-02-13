@@ -52,6 +52,11 @@ namespace EncounterTracker.Pages
 
         private void BuildResultFrames(List<Encounter> encounters)
         {
+            var backButton = new Button
+            {
+                Text = "Back"
+            };
+            backButton.Clicked += backButton_Clicked;
             if(encounters.Count == 0)
             {
                 var label = new Label
@@ -61,6 +66,7 @@ namespace EncounterTracker.Pages
                     FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label))
                 };
                 resultsSection.Children.Add(label);
+                resultsSection.Children.Add(backButton);
             }
             else
             {
@@ -137,6 +143,7 @@ namespace EncounterTracker.Pages
                     };
                     resultsSection.Children.Add(frame);
                 }
+                resultsSection.Children.Add(backButton);
             }
         }
 
