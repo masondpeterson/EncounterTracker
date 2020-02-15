@@ -2,6 +2,7 @@
 using EncounterTracker.DBObjects;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -138,6 +139,28 @@ namespace EncounterTracker.Pages
                 passValidate.Text = "Valid Password";
                 passValidate.IsVisible = true;
                 _passCheck = true;
+            }
+        }
+
+        #endregion
+
+        #region Test Methods
+
+        async void testButton_Clicked(object sender, EventArgs e)
+        {
+            bool answer = await DisplayAlert("Are You Sure?", "This action will clear and repopulate \r\nthe database with demo data.", "Yes", "No");
+            if (answer)
+            {
+                //Add action to Populate the DB with Demo Data
+                testLabel.Text = "DataBase reset to Demo Values";
+                testLabel.IsVisible = true;
+                testLabel.TextColor = Color.Green;
+            }
+            else
+            {
+                testLabel.Text = "No Action Taken";
+                testLabel.IsVisible = true;
+                testLabel.TextColor = Color.Blue;
             }
         }
 

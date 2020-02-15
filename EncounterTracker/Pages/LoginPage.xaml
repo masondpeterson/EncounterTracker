@@ -59,6 +59,13 @@
                             Clicked="createButton_Clicked"
                             IsVisible="False"/>
                 </StackLayout>
+                <StackLayout HorizontalOptions="CenterAndExpand">
+                    <Button x:Name="testButton"
+                            Text="Generate Evaluation Data"
+                            Clicked="testButton_Clicked"/>
+                    <Label x:Name="testLabel"
+                           IsVisible="False"/>
+                </StackLayout>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
