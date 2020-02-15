@@ -119,19 +119,33 @@ namespace EncounterTracker.Pages
 
         private void GenerateStatsLayouts()
         {
-            killStats.Children.Add(CreateStatsLayout(Stats.Kill));
-            assistStats.Children.Add(CreateStatsLayout(Stats.Assist));
-            dealtStats.Children.Add(CreateStatsLayout(Stats.Dealt));
-            takenStats.Children.Add(CreateStatsLayout(Stats.Taken));
-            healStats.Children.Add(CreateStatsLayout(Stats.Heal));
-            dropStats.Children.Add(CreateStatsLayout(Stats.Drop));
-            var button = new Button
+            if (_conn.GetEncountersByPlayer(_userId).Count == 0)
             {
-                Text = "Player Stats",
-                HorizontalOptions = LayoutOptions.StartAndExpand
-            };
-            button.Clicked += resetButton_Clicked;
-            resetButton.Children.Add(button);
+                var label = new Label
+                {
+                    Text = "Enter Encounter to See Stats",
+                    FontSize = Device.GetNamedSize(NamedSize.Medium, typeof(Label)),
+                    HorizontalOptions = LayoutOptions.CenterAndExpand
+                };
+                dynamicSection.Children.Add(label);
+                Grid.SetColumnSpan(label, 2);
+            }
+            else
+            {
+                killStats.Children.Add(CreateStatsLayout(Stats.Kill));
+                assistStats.Children.Add(CreateStatsLayout(Stats.Assist));
+                dealtStats.Children.Add(CreateStatsLayout(Stats.Dealt));
+                takenStats.Children.Add(CreateStatsLayout(Stats.Taken));
+                healStats.Children.Add(CreateStatsLayout(Stats.Heal));
+                dropStats.Children.Add(CreateStatsLayout(Stats.Drop));
+                var button = new Button
+                {
+                    Text = "Player Stats",
+                    HorizontalOptions = LayoutOptions.StartAndExpand
+                };
+                button.Clicked += resetButton_Clicked;
+                resetButton.Children.Add(button);
+            }
         }
 
         private StackLayout CreateStatsLayout(Stats stat)

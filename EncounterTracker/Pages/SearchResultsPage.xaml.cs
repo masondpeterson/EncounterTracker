@@ -104,6 +104,10 @@ namespace EncounterTracker.Pages
                                     new Label
                                     {
                                         Text = _conn.GetCharacterById(e.CharId).CharName,
+                                    },
+                                    new Label
+                                    {
+                                        Text = "Session: " + e.Session.ToString("MMM dd @ h:mm tt")
                                     }
                                 }
                             },

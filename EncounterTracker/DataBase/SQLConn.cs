@@ -97,6 +97,7 @@ namespace EncounterTracker.DataBase
 
         public void PopulateCharClassTable()
         {
+            _conn.DeleteAll<CharClass>();
             var classNames = GenerateClassNames();
 
             foreach (var name in classNames)
@@ -134,6 +135,18 @@ namespace EncounterTracker.DataBase
                              where e.CharId == charId
                              select e;
             return encounters.ToList();
+        }
+
+        #endregion
+
+        #region Delete Methods
+
+        public void ClearDatabase()
+        {
+            _conn.DeleteAll<User>();
+            _conn.DeleteAll<Character>();
+            _conn.DeleteAll<CharClass>();
+            _conn.DeleteAll<Encounter>();
         }
 
         #endregion

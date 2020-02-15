@@ -1,5 +1,6 @@
 ﻿using EncounterTracker.DataBase;
 using EncounterTracker.DBObjects;
+using EncounterTracker.Tests;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -152,7 +153,10 @@ namespace EncounterTracker.Pages
             if (answer)
             {
                 //Add action to Populate the DB with Demo Data
-                testLabel.Text = "DataBase reset to Demo Values";
+                var gen = new GenerateData();
+                gen.GenerateTestData();
+
+                testLabel.Text = "Demo User Created: \r\nUsername: demo \r\nPassword: test";
                 testLabel.IsVisible = true;
                 testLabel.TextColor = Color.Green;
             }
