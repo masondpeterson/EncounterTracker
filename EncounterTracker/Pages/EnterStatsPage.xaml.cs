@@ -1,5 +1,6 @@
 ﻿using EncounterTracker.DataBase;
 using EncounterTracker.DBObjects;
+using EncounterTracker.Tests;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace EncounterTracker.Pages
         private bool _checkEntry = false;
         private bool _dropped;
         private SQLConn _conn = new SQLConn();
+        private ValidateHC _val = new ValidateHC();
 
         public EnterStatsPage(int userId, int charId)
         {
@@ -33,7 +35,7 @@ namespace EncounterTracker.Pages
 
         async void submitButton_Clicked(object sender, EventArgs e)
         {
-            if (ValidateNameField(encounterName.Text))
+            if (_val.ValidateNameField(encounterName.Text))
             {
                 await DisplayAlert("Alert", "Name Field is required", "OK");
             }
@@ -110,16 +112,6 @@ namespace EncounterTracker.Pages
                 label.Text = "Enter a Valid Whole Number";
                 _checkEntry = true;
             }
-        }
-
-        public bool ValidateNameField(string name)
-        {
-            var check = false;
-            if(name == null || name == "")
-            {
-                check = true;
-            }
-            return check;
         }
 
         private Encounter CreateEncounter()
