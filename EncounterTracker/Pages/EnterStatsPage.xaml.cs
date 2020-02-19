@@ -112,7 +112,7 @@ namespace EncounterTracker.Pages
             }
         }
 
-        private bool ValidateNameField(string name)
+        public bool ValidateNameField(string name)
         {
             var check = false;
             if(name == null || name == "")
